@@ -13,7 +13,10 @@ FetchContent_Declare(SFML
     SYSTEM)
 FetchContent_MakeAvailable(SFML)
 
-add_executable(main src/main.cpp)
+add_executable(main src/main.cpp
+        src/MazeLogic/MazeGraph.cpp
+        src/MazeLogic/CellMaze.h
+        src/graphics/drawMaze.cpp)
 target_link_libraries(main PRIVATE sfml-window sfml-graphics)
 target_compile_features(main PRIVATE cxx_std_17)
 
