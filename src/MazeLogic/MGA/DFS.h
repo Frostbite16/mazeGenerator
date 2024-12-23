@@ -16,7 +16,6 @@ class DFS:MazeInteraction{
 public:
     explicit DFS(MazeGraph* maze);
     bool step();
-    // TODO: Implement Depth-first Search
 };
 
 
