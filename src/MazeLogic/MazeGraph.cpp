@@ -15,10 +15,10 @@ MazeGraph::MazeGraph() {
     cells[0][0];
     for(auto& cellRow: cells) { // initialize each cell
         for(auto& cell: cellRow) {
-            cell.walls[0] = true;
-            cell.walls[1] = true;
-            cell.walls[2] = true;
-            cell.walls[3] = true;
+            cell.walls[UP] = true;
+            cell.walls[RIGHT] = true;
+            cell.walls[DOWN] = true;
+            cell.walls[LEFT] = true;
             cell.visited = false;
         }
     }
@@ -38,8 +38,16 @@ cell_node *MazeGraph::returnCell(std::pair<std::size_t, std::size_t> index) {
     return &cells[index.first][index.second];
 }
 
+void MazeGraph::resetVisit() {
+    for (auto& cellRow : cells) {
+        for (auto& cell: cellRow) {
+            cell.visited = false;
+        }
+    }
+}
 
-void MazeGraph::addWall(std::pair<size_t, size_t> index, short direction) {
+
+void MazeGraph::addWall(std::pair<size_t, size_t> index, directions direction) {
     try {
         if(index.first >= nodeQuantX || index.second >= nodeQuantY || direction > 3)
             throw std::out_of_range("MazeGraph::addWall: index out of range");
@@ -63,7 +71,7 @@ void MazeGraph::addWall(std::pair<size_t, size_t> index, short direction) {
     }
 }
 
-void MazeGraph::removeWall(std::pair<size_t, size_t> index, short direction) {
+void MazeGraph::removeWall(std::pair<size_t, size_t> index, directions direction) {
     try {
         if(index.first > nodeQuantX || index.second > nodeQuantY || direction > 3)
             throw std::out_of_range("MazeGraph::addWall: index out of range");

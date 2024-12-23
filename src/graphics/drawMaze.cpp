@@ -4,6 +4,8 @@
 
 #include "drawMaze.h"
 
+#include <iostream>
+
 drawMaze::drawMaze() {
     maze.resize(nodeQuantX);
     for (auto& cellRow : maze) {
@@ -44,11 +46,11 @@ void drawMaze::updateCellSizes(sf::RenderWindow& window) {
     const unsigned int columnMin = ceil(sqrt(cellQuantity));
     const unsigned int rowMin = ceil(cellQuantity / static_cast<double>(columnMin));
 
-    /*cellSizeX = windowSizes.x / columnMin;
-    cellSizeY = windowSizes.y / rowMin;*/ // Not perfect squares, but it fills the screen, kinda buggy sometimes
+    cellSizeX = windowSizes.x / columnMin;
+    cellSizeY = windowSizes.y / rowMin;// Not perfect squares, but it fills the screen, kinda buggy sometimes
 
-    cellSizeX = std::min(windowSizes.x/columnMin, windowSizes.y/rowMin);
-    cellSizeY = cellSizeX;
+    /*cellSizeX = std::min(windowSizes.x/columnMin, windowSizes.y/rowMin);
+    cellSizeY = cellSizeX;*/
 
 }
 
@@ -112,7 +114,7 @@ void drawMaze::drawAndUpdate(sf::RenderWindow& window){
                 }
 
                 // Just for viewing which cell the algorith has already visited
-                if (cell.cellSource->visited) cellShape.setFillColor(sf::Color::Green);
+                if (cell.cellSource->visited) cellShape.setFillColor(sf::Color::Black);
                 else cellShape.setFillColor(sf::Color::Black);
 
                 cellShape.setPosition(sf::Vector2f(cell.pos.x + wallGap, cell.pos.y + wallGap));

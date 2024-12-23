@@ -2,6 +2,7 @@
 #define MAZEGRAPH_H
 #include "CellMaze.h"
 #include <vector>
+#include "../GU.cpp"
 
 extern const std::size_t nodeQuantX;
 extern const std::size_t nodeQuantY;
@@ -11,7 +12,8 @@ class MazeGraph{
 	public:
 		MazeGraph();
 		cell_node* returnCell(std::pair<std::size_t, std::size_t> index); // return pointer to a cell at a specific location
-		void addWall(std::pair<std::size_t,std::size_t> index, short direction);  // Specify a location and adding a wall into direction starting at 0 (north) and going clockwise until it ends at 3 (west)
-		void removeWall(std::pair<std::size_t,std::size_t> index, short direction); // Specify a location and removing a wall into direction starting at 0 (north) and going clockwise until it ends at 3 (west)
+		void resetVisit(); // Reset the status of all cells to non-visited
+		void addWall(std::pair<std::size_t,std::size_t> index, directions direction);  // Specify a location and adding a wall into direction starting at 0 (north) and going clockwise until it ends at 3 (west)
+		void removeWall(std::pair<std::size_t,std::size_t> index, directions direction); // Specify a location and removing a wall into direction starting at 0 (north) and going clockwise until it ends at 3 (west)
 	};
 #endif
